@@ -5,7 +5,8 @@
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20termux-lightgrey.svg)
 
 Automatically delete your messages from Discord private conversations (DMs) in real-time.
-
+ 
+![CLI Preview](preview.png)
 ## ⚠️ CRITICAL WARNING
 
 ### 🚫 Discord Terms of Service Violation

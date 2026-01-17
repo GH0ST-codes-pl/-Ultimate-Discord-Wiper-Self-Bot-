@@ -169,8 +169,30 @@ class DMDeleterBot(discord.Client):
         except Exception as e:
             self.log(f"Error fetching message history: {e}", "ERROR")
 
+def print_banner():
+    """Displays a colorful banner with developer credits"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    banner = rf"""
+{Fore.MAGENTA}╔════════════════════════════════════════════════════════════╗
+{Fore.MAGENTA}║{Fore.CYAN}    ___  _                            _                  {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.CYAN}   |   \| |___  ___ ___ _ _ __ _  __| |                 {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.CYAN}   | |) | (_-< / _/ _ \ '_/ _` |/ _` |                 {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.CYAN}   |___/|_/__/ \__\___/_| \__,_|\__,_|                 {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.BLUE}    ___  __  __   ___      _     _                     {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.BLUE}   |   \|  \/  | |   \ ___| |___| |_ ___ _ _           {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.BLUE}   | |) | |\/| | | |) / -_) / -_)  _/ -_) '_|          {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.BLUE}   |___/|_|  |_| |___/\___|_\___|\__\___|_|            {Fore.MAGENTA}║
+{Fore.MAGENTA}║                                                            ║
+{Fore.MAGENTA}║{Fore.WHITE}   >> Discord DM Auto-Deleter Bot <<                    {Fore.MAGENTA}║
+{Fore.MAGENTA}║{Fore.YELLOW}   >> Created by GH0ST <<                               {Fore.MAGENTA}║
+{Fore.MAGENTA}╚════════════════════════════════════════════════════════════╝
+"""
+    print(banner)
+
 def main():
     """Main program function"""
+    print_banner()
+    
     print(f"{Fore.RED}{'='*60}")
     print(f"{Fore.RED}    WARNING: SELF-BOT - VIOLATES DISCORD TOS!")
     print(f"{Fore.RED}    Using this tool may result in account ban!")
