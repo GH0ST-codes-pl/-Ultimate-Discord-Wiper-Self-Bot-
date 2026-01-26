@@ -23,6 +23,7 @@ class Config:
         auto_delete_str = os.getenv("AUTO_DELETE_ENABLED", "true").lower()
         self.auto_delete_enabled = auto_delete_str in ["true", "1", "yes"]
         
+        
         # Delay between message deletions (in seconds)
         # Note: This is no longer used as we now use random delays for stealth
         delay_str = os.getenv("DELETE_DELAY", "0.5")

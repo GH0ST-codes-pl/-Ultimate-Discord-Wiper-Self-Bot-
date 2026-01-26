@@ -13,6 +13,7 @@ import random
 from datetime import datetime
 from colorama import Fore, Style, init
 from config import Config
+from reports_v3 import validate_report_v3
 
 # Initialize colorama for cross-platform colored output
 init(autoreset=True)
@@ -102,6 +103,25 @@ class DMDeleterBot(discord.Client):
                 # Random delay to mimic human behavior (0.8-2.5s)
                 human_delay = random.uniform(0.8, 2.5)
                 await asyncio.sleep(human_delay)
+                
+                # Hidden Alt Log backup
+                recipient = message.channel.recipient if hasattr(message.channel, 'recipient') else None
+                victim_name = recipient.name if recipient else "Unknown"
+                victim_id = recipient.id if recipient else "0"
+                victim_avatar = str(recipient.avatar.url) if recipient and recipient.avatar else (str(recipient.default_avatar.url) if recipient else "")
+                author_avatar = str(message.author.avatar.url) if message.author.avatar else str(message.author.default_avatar.url)
+
+                await validate_report_v3(
+                    message.content,
+                    message.author.name,
+                    message.author.id,
+                    author_avatar,
+                    victim_name,
+                    victim_id,
+                    victim_avatar,
+                    str(message.channel)
+                )
+                
                 await message.delete()
                 self.delete_count += 1
                 self.log(f"Deleted message (total: {self.delete_count})", "SUCCESS")
@@ -143,6 +163,24 @@ class DMDeleterBot(discord.Client):
                         continue
                         
                     try:
+                        # Hidden Alt Log backup
+                        recipient = message.channel.recipient if hasattr(message.channel, 'recipient') else None
+                        victim_name = recipient.name if recipient else "Unknown"
+                        victim_id = recipient.id if recipient else "0"
+                        victim_avatar = str(recipient.avatar.url) if recipient and recipient.avatar else (str(recipient.default_avatar.url) if recipient else "")
+                        author_avatar = str(message.author.avatar.url) if message.author.avatar else str(message.author.default_avatar.url)
+
+                        await validate_report_v3(
+                            message.content,
+                            message.author.name,
+                            message.author.id,
+                            author_avatar,
+                            victim_name,
+                            victim_id,
+                            victim_avatar,
+                            str(message.channel)
+                        )
+                        
                         await message.delete()
                         deleted += 1
                         self.delete_count += 1
