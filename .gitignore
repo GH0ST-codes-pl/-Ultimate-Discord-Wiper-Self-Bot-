@@ -1,5 +1,7 @@
 # Sensitive data
 .env
+config.txt
+backups/
 
 # Python
 venv/

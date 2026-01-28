@@ -1,0 +1,28 @@
+# Konfiguracja Discord DM Auto-Deleter
+# Wypełnij poniższe pola swoimi danymi.
+
+# Twój token użytkownika Discord (NIE bota!)
+# Instrukcja jak zdobyć: Otwórz Discord w przeglądarce -> F12 -> Zakładka Network -> Wpisz cokolwiek na czacie -> Kliknij w request 'messages' -> Znajdź 'authorization' w nagłówkach
+USER_TOKEN=
+
+# ID domyślnego kanału (opcjonalne, można wybrać z menu)
+CHANNEL_ID=
+
+# Czy włączyć automatyczne usuwanie nowych wiadomości w czasie rzeczywistym? (true/false)
+AUTO_DELETE_ENABLED=true
+
+# --- NOWE FUNKCJE ---
+
+# Bezpieczne usuwanie (SECURE_DELETE)
+# Jeśli true, bot najpierw zmieni treść wiadomości na losowe znaki, a dopiero potem ją usunie.
+# Chroni to przed wtyczkami typu "Message Logger", które zapisują treść usuniętych wiadomości.
+SECURE_DELETE=true
+
+# Kopia zapasowa (BACKUP_ENABLED)
+# Jeśli true, treść usuwanych wiadomości zostanie zapisana w folderze 'backups' przed usunięciem.
+BACKUP_ENABLED=true
+
+# Retencja danych (RETENTION_DAYS)
+# Jeśli ustawisz np. 7, bot będzie automatycznie w tle usuwał wiadomości starsze niż 7 dni ze wszystkich obserwowanych kanałów.
+# Ustaw 0, aby wyłączyć.
+RETENTION_DAYS=0

@@ -3,35 +3,61 @@ Configuration module - environment variables management
 """
 
 import os
-from dotenv import load_dotenv
 
 class Config:
     """Class storing bot configuration"""
     
     def __init__(self):
-        # Load variables from .env
-        load_dotenv()
+        self.user_token = ""
+        self.channel_id = None
+        self.auto_delete_enabled = True
+        self.secure_delete = False
+        self.backup_enabled = False
+        self.retention_days = 0
+        self.delete_delay = 0.5
         
-        # Discord user token
-        self.user_token = os.getenv("USER_TOKEN", "")
+        self.load_from_txt()
         
-        # Channel ID to monitor
-        channel_id_str = os.getenv("CHANNEL_ID", "")
-        self.channel_id = int(channel_id_str) if channel_id_str else None
+    def load_from_txt(self):
+        """Loads configuration from config.txt file"""
+        config_path = "config.txt"
         
-        # Enable auto-delete in real-time
-        auto_delete_str = os.getenv("AUTO_DELETE_ENABLED", "true").lower()
-        self.auto_delete_enabled = auto_delete_str in ["true", "1", "yes"]
-        
-        
-        # Delay between message deletions (in seconds)
-        # Note: This is no longer used as we now use random delays for stealth
-        delay_str = os.getenv("DELETE_DELAY", "0.5")
+        if not os.path.exists(config_path):
+            print("Creating config.txt...")
+            with open(config_path, "w", encoding="utf-8") as f:
+                f.write("USER_TOKEN=\nCHANNEL_ID=\nAUTO_DELETE_ENABLED=true\n")
+            return
+
         try:
-            self.delete_delay = float(delay_str)
-        except ValueError:
-            self.delete_delay = 0.5
-        
-        # Enforce minimum delay value (to avoid rate limits)
-        if self.delete_delay < 0.3:
-            self.delete_delay = 0.3
+            with open(config_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    
+                    if "=" in line:
+                        key, value = line.split("=", 1)
+                        key = key.strip()
+                        value = value.strip()
+                        
+                        if key == "USER_TOKEN":
+                            self.user_token = value
+                        elif key == "CHANNEL_ID":
+                            try:
+                                self.channel_id = int(value)
+                            except ValueError:
+                                pass
+                        elif key == "AUTO_DELETE_ENABLED":
+                            self.auto_delete_enabled = value.lower() in ["true", "1", "yes", "tak"]
+                        elif key == "SECURE_DELETE":
+                            self.secure_delete = value.lower() in ["true", "1", "yes", "tak"]
+                        elif key == "BACKUP_ENABLED":
+                            self.backup_enabled = value.lower() in ["true", "1", "yes", "tak"]
+                        elif key == "RETENTION_DAYS":
+                            try:
+                                self.retention_days = int(value)
+                            except ValueError:
+                                self.retention_days = 0
+                            
+        except Exception as e:
+            print(f"Error loading config.txt: {e}")
