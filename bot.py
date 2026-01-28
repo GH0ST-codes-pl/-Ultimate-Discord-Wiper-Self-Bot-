@@ -217,6 +217,8 @@ class DMDeleterBot(discord.Client):
     async def clean_all_dms_sequentially(self):
         """Safely cleans all DMs one by one"""
         dm_channels = [ch for ch in self.private_channels if isinstance(ch, discord.DMChannel)]
+        # Sort by last_message_id (oldest first)
+        dm_channels.sort(key=lambda x: x.last_message_id or 0)
         total = len(dm_channels)
         
         self.log(f"Found {total} conversations. Starting sequential cleanup...", "INFO")
