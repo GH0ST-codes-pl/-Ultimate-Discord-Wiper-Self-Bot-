@@ -1,28 +1,52 @@
-# Konfiguracja Discord DM Auto-Deleter
-# Wypełnij poniższe pola swoimi danymi.
+# Discord DM Auto-Deleter Configuration / Konfiguracja
+# Fill in the fields below. / Wypełnij poniższe pola.
 
+# ==========================================
+# 🔑 AUTHENTICATION / UWIERZYTELNIANIE
+# ==========================================
+
+# Your Discord User Token (NOT a bot token!)
+# How to get it: Open Discord in browser -> F12 -> Network Tab -> Type something in chat -> Click 'messages' request -> Find 'authorization' header.
+#
 # Twój token użytkownika Discord (NIE bota!)
-# Instrukcja jak zdobyć: Otwórz Discord w przeglądarce -> F12 -> Zakładka Network -> Wpisz cokolwiek na czacie -> Kliknij w request 'messages' -> Znajdź 'authorization' w nagłówkach
+# Instrukcja: Otwórz Discord w przeglądarce -> F12 -> Zakładka Network -> Wpisz cokolwiek na czacie -> Kliknij w request 'messages' -> Znajdź 'authorization' w nagłówkach.
 USER_TOKEN=
 
-# ID domyślnego kanału (opcjonalne, można wybrać z menu)
+# ==========================================
+# 🎯 TARGET / CEL
+# ==========================================
+
+# Default Channel ID to monitor (Optional, can be selected via menu)
+# ID domyślnego kanału (Opcjonalne, można wybrać z menu)
 CHANNEL_ID=
 
-# Czy włączyć automatyczne usuwanie nowych wiadomości w czasie rzeczywistym? (true/false)
+# ==========================================
+# ⚙️ SETTINGS / USTAWIENIA
+# ==========================================
+
+# Enable real-time auto-deletion of new messages? (true/false)
+# Czy włączyć automatyczne usuwanie nowych wiadomości w czasie rzeczywistym?
 AUTO_DELETE_ENABLED=true
 
-# --- NOWE FUNKCJE ---
+# --- SECURITY FEATURES / FUNKCJE BEZPIECZEŃSTWA ---
 
-# Bezpieczne usuwanie (SECURE_DELETE)
+# Secure Delete / Bezpieczne Usuwanie
+# If true, the bot edits the message to random characters before deleting it.
+# Protects against "Message Logger" plugins that save deleted messages.
+#
 # Jeśli true, bot najpierw zmieni treść wiadomości na losowe znaki, a dopiero potem ją usunie.
 # Chroni to przed wtyczkami typu "Message Logger", które zapisują treść usuniętych wiadomości.
 SECURE_DELETE=true
 
-# Kopia zapasowa (BACKUP_ENABLED)
+# Backup / Kopia Zapasowa
+# If true, deleted messages are saved to 'backups/' folder before deletion.
 # Jeśli true, treść usuwanych wiadomości zostanie zapisana w folderze 'backups' przed usunięciem.
 BACKUP_ENABLED=true
 
-# Retencja danych (RETENTION_DAYS)
-# Jeśli ustawisz np. 7, bot będzie automatycznie w tle usuwał wiadomości starsze niż 7 dni ze wszystkich obserwowanych kanałów.
+# Data Retention / Retencja Danych
+# If set to e.g. 7, the bot will automatically delete messages older than 7 days every hour.
+# Set to 0 to disable.
+#
+# Jeśli ustawisz np. 7, bot będzie automatycznie w tle usuwał wiadomości starsze niż 7 dni.
 # Ustaw 0, aby wyłączyć.
 RETENTION_DAYS=0
