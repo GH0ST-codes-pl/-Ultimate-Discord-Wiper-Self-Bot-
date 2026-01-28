@@ -13,144 +13,65 @@
 
 ---
 
-## 🚀 Key Features
+## 🚀 Key Features / Główne Funkcje
 
-*   **🔒 Secure Deletion (Anti-Logger)**: Before deletion, messages are edited to random characters (e.g., `x8K9z`). This defeats "Message Logger" plugins used by other users, ensuring your original message is truly gone.
-*   **🛡️ Safety First**:
-    *   **Human-like Delays**: Random intervals between deletions.
-    *   **Sequential Processing**: When cleaning multiple chats, the bot waits 30 seconds between conversations to avoid API rate limits.
-*   **💾 Backup System**: (Optional) Automatically saves a local log of your deleted messages before they are removed.
-*   **📅 Retention Policy**: (Optional) Background task to automatically delete messages older than X days every hour.
-*   **🖥️ Interactive CLI**: No coding required. Launch the bot and choose options from a professional menu.
-    *   Auto-Delete (Real-time monitoring)
-    *   Delete History (with Date and Phrase filters)
-    *   Clean ALL DMs (Mass wipe)
-*   **⚙️ Easy Config**: Simple `config.txt` file for all settings.
+### 🛠️ Functionality / Funkcjonalność
+*   **📅 Delete by Date / Usuwanie po Dacie**: Remove messages older than a specific day (e.g., wipe everything before 2024).
+*   **🔍 Phrase Filter / Filtr Fraz**: Delete only messages containing a specific word or sentence.
+*   **🔢 Amount Limit / Limit Ilości**: Delete only the last N messages (or leave empty for a full wipe).
+*   **📂 Multi-Channel / Wybór Rozmów**: Interactive menu to select any DM from your recent history (Top 50).
+*   **☢️ Safe Global Wipe / Masowe Czyszczenie**: "Clean ALL DMs" mode that safely clears every open conversation one by one.
+
+### 🛡️ Security / Bezpieczeństwo
+*   **🔒 Secure Delete (Anti-Logger)**: Edits messages to random gibberish before deleting to bypass message logging plugins.
+*   **💾 Local Backup**: Saves your messages to `backups/deleted_msgs.log` before they vanish.
+*   **🕒 Smart Delays**: Mimics human behavior with random pauses and a 30s cool-down between different conversations.
+*   **📅 Automatic Retention**: Keep your history fresh by auto-deleting messages older than X days in the background.
 
 ---
 
 ## 🛠️ Installation / Instalacja
 
 ### 💻 Windows
-1.  **Download Python**: Install Python 3.8+ from [python.org](https://www.python.org/) (Check "Add Python to PATH" during installation).
-2.  **Download Bot**: Download this repository as a ZIP and extract it, or use git:
-    ```cmd
-    git clone https://github.com/GH0ST-codes-pl/discord-dm-auto-deleter-github.git
-    cd discord-dm-auto-deleter-github
-    ```
-3.  **Install Requirements**: Open command prompt (`cmd`) in the folder and run:
-    ```cmd
-    pip install -r requirements.txt
-    ```
-4.  **Run**:
-    ```cmd
-    python bot.py
-    ```
+1.  **Download Python**: Install Python 3.8+ from [python.org](https://www.python.org/) (Check "Add Python to PATH").
+2.  **Download Bot**: `git clone https://github.com/GH0ST-codes-pl/-Ultimate-Discord-Wiper-Self-Bot-.git`
+3.  **Install Requirements**: `pip install -r requirements.txt`
+4.  **Run**: `python bot.py`
 
 ### 🐧 Linux / macOS
-1.  **Install Python**: `sudo apt install python3 python3-pip git` (Debian/Ubuntu) or via Homebrew (macOS).
-2.  **Clone Repo**:
-    ```bash
-    git clone https://github.com/GH0ST-codes-pl/discord-dm-auto-deleter-github.git
-    cd discord-dm-auto-deleter-github
-    ```
-3.  **Install Requirements**:
-    ```bash
-    pip3 install -r requirements.txt
-    ```
-4.  **Run**:
-    ```bash
-    python3 bot.py
-    ```
+1.  **Install Python**: `sudo apt install python3 python3-pip git`
+2.  **Clone Repo**: `git clone https://github.com/GH0ST-codes-pl/-Ultimate-Discord-Wiper-Self-Bot-.git`
+3.  **Install Requirements**: `pip3 install -r requirements.txt`
+4.  **Run**: `python3 bot.py`
 
 ### 📱 Android (Termux)
-1.  **Install Termux**: Download from F-Droid (Play Store version is outdated).
-2.  **Update & Install Packages**:
-    ```bash
-    pkg update && pkg upgrade -y
-    pkg install python git clang make -y
-    ```
-3.  **Clone Repo**:
-    ```bash
-    git clone https://github.com/GH0ST-codes-pl/discord-dm-auto-deleter-github.git
-    cd discord-dm-auto-deleter-github
-    ```
-4.  **Install Requirements**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(If `aiohttp` fails, try: `CFLAGS="-Wno-error=incompatible-function-pointer-types" pip install aiohttp`)*
-5.  **Run**:
-    ```bash
-    python bot.py
-    ```
-
-### ⚙️ Configuration / Konfiguracja
-1.  Open `config.txt` file.
-2.  Paste your **User Token**.
-3.  (Optional) Adjust settings like `SECURE_DELETE` or `BACKUP_ENABLED`.
+1.  **Install Termux** (from F-Droid).
+2.  **Update**: `pkg update && pkg upgrade -y`
+3.  **Install Build Tools**: `pkg install python git clang make -y`
+4.  **Clone & Install**: `git clone ...` then `pip install -r requirements.txt`
+5.  **Run**: `python bot.py`
 
 ---
 
-## 📖 How to Use (English)
+## 📖 How to Use / Jak Używać
 
-Run the bot:
-```bash
-python3 bot.py
-```
+### ⚙️ Step 1: Configuration / Konfiguracja
+Edit **`config.txt`**:
+*   `USER_TOKEN`: Your Discord authorization token.
+*   `SECURE_DELETE`: `true` to edit messages before deleting.
+*   `BACKUP_ENABLED`: `true` to save logs locally.
+*   `RETENTION_DAYS`: Set to e.g., `30` to auto-clean old messages in the background.
 
-### Main Menu Options:
-1.  **Start Auto-Delete (Real-time)**
-    *   Target: The specific channel set in `config.txt` or selected via Option 3.
-    *   Action: Monitors for NEW messages from you and deletes them after a short delay.
-    *   Best for: Privacy in an active conversation.
+### ⌨️ Step 2: Interactive Menu / Menu Interaktywne
+Run `python3 bot.py` and choose:
 
-2.  **Delete History (Selected Channel)**
-    *   Target: The specific channel set in `config.txt` or selected via Option 3.
-    *   Action: Wipes OLD messages.
-    *   **Filters**:
-        *   **Limit**: "Delete last 100 messages" (Press Enter for ALL).
-        *   **Date**: "Delete messages older than 2024-01-01" (Press Enter for ALL).
-    
-3.  **Select Target Channel from List**
-    *   Action: Displays a list of your 50 most recent DMs.
-    *   Usage: Type the number (e.g., `1`) to select that person as the current target for Option 1 or 2.
-
-4.  **Clean ALL DMs (Sequential & Safe)**
-    *   Action: The "Nuclear Option". Iterates through **ALL** your open DMs.
-    *   **Safety**: Deletes messages from Person A -> Waits 30s -> Deletes messages from Person B -> ...
-    *   **Warning**: This takes time but is safe against bans.
-
----
-
-## 🇵🇱 Jak Używać (Polish)
-
-Uruchom bota poleceniem:
-```bash
-python3 bot.py
-```
-
-### Opcje Menu:
-1.  **Start Auto-Delete (Real-time)**
-    *   Cel: Wybrany kanał (z pliku config lub opcji 3).
-    *   Działanie: Nasłuchuje NOWYCH wiadomości od Ciebie i usuwa je po kilku sekundach.
-    *   Zastosowanie: Utrzymanie prywatności podczas aktywnej rozmowy.
-
-2.  **Delete History (Selected Channel)**
-    *   Cel: Wybrany kanał.
-    *   Działanie: Usuwa STARE wiadomości.
-    *   **Filtry**:
-        *   **Limit**: "Usuń ostatnie 100 wiadomości" (Enter = Wszystkie).
-        *   **Data**: "Usuń starsze niż 2024-01-01" (Enter = Wszystkie).
-
-3.  **Select Target Channel from List**
-    *   Działanie: Wyświetla listę 50 ostatnich rozmów.
-    *   Użycie: Wpisz numer (np. `1`), aby wybrać tę osobę jako cel dla Opcji 1 lub 2.
-
-4.  **Clean ALL DMs (Sequential & Safe)**
-    *   Działanie: "Opcja Nuklearna". Przechodzi przez **WSZYSTKIE** otwarte rozmowy DM.
-    *   **Bezpieczeństwo**: Czyści rozmowę z osobą A -> Czeka 30s -> Czyści rozmowę z osobą B -> ...
-    *   **Uwaga**: Proces trwa dłużej, ale chroni przed banem za spamowanie API.
+1.  **Start Auto-Delete**: Real-time cleaning of the current target channel.
+2.  **Delete History (Selected Channel)**: 
+    *   First, it asks for a **Limit** (how many).
+    *   Second, it asks for a **Date** (from when).
+    *   Third, it asks for a **Phrase** (filter content).
+3.  **Select Target**: Pick someone from your DM list to become the current target.
+4.  **Clean ALL DMs**: Safely wipe every single DM conversation you have open. Automatic 30s break between users.
 
 ---
 

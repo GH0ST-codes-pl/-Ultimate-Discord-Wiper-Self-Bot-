@@ -209,7 +209,10 @@ class DMDeleterBot(discord.Client):
             except ValueError:
                 self.log("Invalid date format! Ignoring date filter.", "WARNING")
 
-        await self.delete_all_messages(channel, limit=limit, before_date=before_date)
+        phrase = await asyncio.to_thread(input, f"{Fore.CYAN}Delete only messages containing phrase? (Press Enter for NO FILTER): {Style.RESET_ALL}")
+        phrase = phrase.strip() if phrase.strip() else None
+
+        await self.delete_all_messages(channel, limit=limit, phrase=phrase, before_date=before_date)
 
     async def clean_all_dms_sequentially(self):
         """Safely cleans all DMs one by one"""
